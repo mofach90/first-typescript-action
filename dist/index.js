@@ -24971,6 +24971,7 @@ async function run() {
         const utcTime = localTime.getTime() + localTime.getTimezoneOffset() * 60000; // Get the UTC time in milliseconds
         const berlinTime = new Date(utcTime + berlinTimeOffset * 60000); // Add the offset for Berlin time
         core.setOutput('time', berlinTime.toTimeString());
+        core.debug(`This is only for my test`);
     }
     catch (error) {
         // Fail the workflow run if an error occurs
