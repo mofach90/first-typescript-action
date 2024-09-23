@@ -24966,7 +24966,12 @@ async function run() {
         await (0, wait_1.wait)(parseInt(ms, 10));
         core.debug(new Date().toTimeString());
         // Set outputs for other workflow steps to use
-        core.setOutput('time', new Date().toTimeString());
+        const berlinTimeOffset = 2 * 60; // UTC+2, so 2 hours converted to minutes
+        const localTime = new Date();
+        const utcTime = localTime.getTime() + localTime.getTimezoneOffset() * 60000; // Get the UTC time in milliseconds
+        const berlinTime = new Date(utcTime + berlinTimeOffset * 60000); // Add the offset for Berlin time
+        core.setOutput('time', berlinTime.toTimeString());
+        core.debug(`This is only for my test`);
     }
     catch (error) {
         // Fail the workflow run if an error occurs
